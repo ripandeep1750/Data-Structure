@@ -1,58 +1,38 @@
-// Traversal in a linked list
+// Traversal in a Linked List
+#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-struct Node {
-	int data;
-	Node* next;
+class Node{
+    public:
+    int data;
+    Node* next;
 };
 
-// Function that allocates a new node with given data
-Node* newNode(int data)
-{
-	Node* new_node = new Node;
-	new_node->data = data;
-	new_node->next = NULL;
-	return new_node;
+void printList(Node* n){
+    while(n !=NULL){
+        cout << n->data << " ";
+        n = n->next;
+    }
 }
 
-// Function to insert a new node at the end of linked list
-Node* insertEnd(Node* head, int data)
-{
-	// If linked list is empty,
-	// Create a new node
-	if (head == NULL)
-		return newNode(data);
-
-	// If we have not reached the end
-	// Keep traversing recursively
-	else
-		head->next = insertEnd(head->next, data);
-	return head;
-}
-
-/// Function to traverse given LL
-void traverse(Node* head)
-{
-	if (head == NULL)
-		return;
-
-	// If head is not NULL,
-	// print current node and
-	// recur for remaining list
-	cout << head->data << " ";
-
-	traverse(head->next);
-}
-
-int main()
-{
-	// Given Linked List
-	Node* head = NULL;
-	head = insertEnd(head, 1);
-	head = insertEnd(head, 2);
-	head = insertEnd(head, 3);
-	head = insertEnd(head, 4);
-
-	// Function Call to traverse LL
-	traverse(head);
+int main(){
+    Node* head = NULL;
+    Node* second = NULL;
+    Node* third = NULL;
+    
+    //alocate 3 nodes in the heap
+    head = new Node();
+    second = new Node();
+    third = new Node();
+    
+    head->data = 1; // assign data in first node
+    head->next = second;  //link first node wih second node
+    second->data = 2;
+    second->next = third;
+    third->data = 3;
+    third->next = NULL;
+    
+    printList(head);
+    
+    return 0;
 }
